@@ -64,3 +64,13 @@ The credential is the login details that enables the connection to be establishe
 
 ### The Public Cloud 
 The public cloud is the AWS itself, providing cloud online storage and solutions to organisation and developers. It needs to be secured and it produces a file.Perm as an SSH key that is shared with its sole user and nobody else.
+
+# Steps to create an AWS EC2 Instance
+1) On the Amazon Management Conole, Search for EC2 and click on the link. It will take you to the EC2 dashboard.
+2) Click on the launch Instance button, and it will show 2 options. Select the launch instance options.
+3) Choose a operating system that you would like to use as the virtual environment and then click continue.
+4) Choose the instance type, and then click continue.
+5) Configure the instance details and renamed them so that its easier to find these instance when they are running then continue.
+6) you can choose to define how much storage you would want your instance to have: continue
+7) Add any tags that you need to use: continue
+8) Configure security option is where you set up a private and public connection to the cloud. public connection is where everyone can access it, private connection can only be accessed by yourself with the IP address and ssh key.
