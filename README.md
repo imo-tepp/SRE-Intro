@@ -48,3 +48,19 @@ On-Site is the most expensive out of the 3 options, the hardware needs to be bou
 Public Cloud (Off site) is cheap and enable developer to deploy and only use the resources that they require, but they don't have a lot of control over the infrastructure.
 
 Hybrid is a combination of both, it helps seperate the private and public data easier.
+
+
+# EC2 Service Model
+
+![](2022-03-22-10-46-35.png)
+
+The EC2 Service model has 3 components: The Service(Public Cloud), the Credential role and the local host. 
+
+### The local host 
+The localhost has the local device hardware component to establish a link between the itself and the amazon web service. It also stores the file.permission on the device. (WHY?)
+
+### The Credential 
+The credential is the login details that enables the connection to be established securely. It requires the Username, Password and the AWS key.
+
+### The Public Cloud 
+The public cloud is the AWS itself, providing cloud online storage and solutions to organisation and developers. It needs to be secured and it produces a file.Perm as an SSH key that is shared with its sole user and nobody else.
