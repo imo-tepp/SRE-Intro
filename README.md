@@ -8,47 +8,55 @@
 - Creating github repo to push the markdown doc
 -  Amazon Web Services (AWS)
 
+#
+
 ### What is the SRE role?
 SRE (Site reliability Engineer) responsible for maintaing site integrity, ensuring that it doesn't fall apart or crashes, while making sure that the users have a positive user journey.
+
+#### SRE traits
+- Studious
+- Problem Solver
+- Creative
+- Communicative
 
 ### Benefit of Cloud Computing
 - Ease of use
 
-Can quickly and securely host application. Can uses the AWS Management Console to access hosting platform.
+> Can quickly and securely host application. Can uses the AWS Management Console to access hosting platform.
 
 - Flexibility
 
-Enables developers to choose whichever operating system, programming language, different platforms, database and other services. 
+> Enables developers to choose whichever operating system, programming language, different platforms, database and other services. 
   
 - Robustness
 
-AWS also provide scalability, so that the application can upscale or downscale according to the demand.
+> AWS also provide scalability, so that the application can upscale or downscale according to the demand.
   
 - Cost
 
-Pay for what you use, so no monthly payment or contract payment. Only payment for the resources that has been used.
+> Pay for what you use, so no monthly payment or contract payment. Only payment for the resources that has been used.
 
-### AWS
+# AWS
 Amazon Web Service provides an online storage solution for organisations to host their application without the expensive cost attached with the hardware.
 
-### AWS global infrastructure
-The global infrasturcture of AWS means that they have data center across multiple countries and developers can choose whichever one they want to use for deploying their application.
+## AWS global infrastructure
+> The global infrasturcture of AWS means that they have data center across multiple countries and developers can choose whichever one they want to use for deploying their application.
 
-### Regions VS Avaailabilty Zones
-Regions are different cities or countries where AWS is available, whereas availablity zones are multiple isolated locations within the regions. 
+## Regions VS Avaailabilty Zones
+> Regions are different cities or countries where AWS is available, whereas availablity zones are multiple isolated locations within the regions. 
 
-### What are the four pillars of cloud computing?
-Ease of use (how easy it is to use), Flexibility (What system and langauges it can support), Robustness (can it keep with the demand) and Cost (How much it costs)
+## What are the four pillars of cloud computing?
+> Ease of use (how easy it is to use), Flexibility (What system and langauges it can support), Robustness (can it keep with the demand) and Cost (How much it costs)
 
-### What is CDN?
-Content delivery network is where a group of distributed servers, situated in different locations work together to provide a fast delivery of internet content.
+## What is CDN?
+> Content delivery network is where a group of distributed servers, situated in different locations work together to provide a fast delivery of internet content.
 
-### On-Site VS Hybrid - On-Site VS Public Cloud
-On-Site is the most expensive out of the 3 options, the hardware needs to be bought and security can be an issue. But it allows greater control over the infrastructure.
+## On-Site VS Hybrid - On-Site VS Public Cloud
+> On-Site is the most expensive out of the 3 options, the hardware needs to be bought and security can be an issue. But it allows greater control over the infrastructure.
 
-Public Cloud (Off site) is cheap and enable developer to deploy and only use the resources that they require, but they don't have a lot of control over the infrastructure.
+> Public Cloud (Off site) is cheap and enable developer to deploy and only use the resources that they require, but they don't have a lot of control over the infrastructure.
 
-Hybrid is a combination of both, it helps seperate the private and public data easier.
+> Hybrid is a combination of both, it helps seperate the private and public data easier.
 
 
 # EC2 Service Model
@@ -57,14 +65,15 @@ Hybrid is a combination of both, it helps seperate the private and public data e
 
 The EC2 Service model has 3 components: The Service(Public Cloud), the Credential role and the local host. 
 
-### The local host 
+## The local host 
 The localhost has the local device hardware component to establish a link between the itself and the amazon web service. It also stores the file.permission on the device. (WHY?)
 
-### The Credential 
+## The Credential 
 The credential is the login details that enables the connection to be established securely. It requires the Username, Password and the AWS key.
 
-### The Public Cloud 
+## The Public Cloud 
 The public cloud is the AWS itself, providing cloud online storage and solutions to organisation and developers. It needs to be secured and it produces a file.Perm as an SSH key that is shared with its sole user and nobody else.
+
 
 # Steps to create an AWS EC2 Instance
 1) On the Amazon Management Conole, Search for EC2 and click on the link. It will take you to the EC2 dashboard.
@@ -106,7 +115,7 @@ The public cloud is the AWS itself, providing cloud online storage and solutions
 # create a file called provision.sh
 touch provision.sh
 # it must start with #!/bin/bash
-#!bin/bash
+#!/bin/bash
 # run updates
 sudo apt-get update -y
 #run upgrades
@@ -121,3 +130,21 @@ sudo systemctl enable nginx
 
 - Change the file to exe `sudo chmod +x provision.sh`
 - How to run an exe file `./provision.sh`
+
+
+# Tomcat
+
+```bash
+#!/bin/bash
+#update
+sudo apt-get update -y
+#upgrade
+sudo apt-get upgrade -y
+#install tomcat
+sudo apt-get install tomcat9 -y
+#ensure it's running - start tomcat
+sudo systemctl start tomcat9
+#enable tomcat
+sudo systemctl enable tomcat9
+```
+Remember to change the inbound rule for the AWS security group, to allow port 8080 to be used, else it will just blocked and fail the attempt for using tomcat.
