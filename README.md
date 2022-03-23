@@ -75,3 +75,49 @@ The public cloud is the AWS itself, providing cloud online storage and solutions
 6) you can choose to define how much storage you would want your instance to have: continue
 7) Add any tags that you need to use: continue
 8) Configure security option is where you set up a private and public connection to the cloud. public connection is where everyone can access it, private connection can only be accessed by yourself with the IP address and ssh key.
+
+### Linux Command
+- How to start a service `sudo systemctl start name_service`
+- How to stop a service `sudo systemctl stop name_service`
+- How to check status `systemctl status service_name`
+- How to enable service `sudo systemctl enable service_name`
+- How to install a package `sudo apt install package_name -y`
+- How to remove a package `sudo apt remove package_name -y`
+- How to check all process `top`
+- Who am i `uname` or `uname -a`
+- Where am i `pwd`
+- Create a dir `mkdir dir_name`
+- How to check `ls` or `ls -a`
+- How to create a file `touch name_file` or `nano file_name`
+- How to check content of the file without going inside the file `cat file_name`
+- How to move a file `mv file_name dir_name`
+- How to delete folder `rm -rf folder_name`
+
+### File Permissions
+- How to check a file permission `ll`
+- Change file permission `chmod required_permission file_name`
+- write `w` read `r` exe `x`
+- http://chmod-calculator.org/
+
+### Bash Scripting
+
+- code block
+```bash
+# create a file called provision.sh
+touch provision.sh
+# it must start with #!/bin/bash
+#!bin/bash
+# run updates
+sudo apt-get update -y
+#run upgrades
+sudo apt-get upgrade -y
+# install nginx
+sudo apt-get install nginx -y
+# ensure it's running - start nginx
+sudo systemctl start nginx
+# enable nginx
+sudo systemctl enable nginx
+```
+
+- Change the file to exe `sudo chmod +x provision.sh`
+- How to run an exe file `./provision.sh`
