@@ -1,5 +1,6 @@
 # SRE Intro
 ## User Journey
+> A user journey is a process that the user experiences when navigating pages. It is used in the design process for websites, to identify the different ways that the user can undertake to reach their intended page, in a quick and efficient manner.
 ### User Experience
 #### Cloud Computing with AWS
 ##### AWS Services
