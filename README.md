@@ -199,7 +199,7 @@ Docker is an open platform that enables application build and deployment to be h
 ## How It Works
 ![Docker Process](Images/docker%20process.png "Docker Process")
 
-Docker uses a server-client architecture, where the 'Client' communicates with the 'Host' that does all the heavy lifting, running and distributing docker containers. 
+Docker uses a server-client architecture, where the `Client` communicates with the `Host` that does all the heavy lifting, running and distributing docker containers. 
 
 An example of this process running:
 
@@ -245,3 +245,78 @@ cd /usr/share/nginx/html/index.html
 apt update -y
 apt install nano -y
 ```
+
+
+### Docker file to automate the process of building customised image - Building a Microservice 
+
+Platforms?
+- Crio - Rocket - (Popular) Docker
+- Automate Image Building of our customised nginx image
+- Create a `Dockerfile` in the same location where our index.html is 
+- Decide which base image to use for your image.
+
+## Build a API into a MicroService
+
+[Tutorial](https://www.youtube.com/watch?v=f0lMGPB10bM) ! Follow Along if not sure how to create a dockerfile!!
+
+```Bash
+# Get Base Image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /"Employee(Controllers)"
+
+# Copy the CSPROJ file to restore any dependencies 
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the remaining files
+COPY /. ./
+RUN dotnet publish -c Release -o /app
+
+# GENERATE runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "Employee(Controllers).dll"]
+```
+
+## Problem Shoot
+- If `dotnet restore` produces an error:
+> Could not execute because the application was not found or a compatible .NET SDK is not installed.
+
+Do the following:
+```Bash
+# Check the list of images availiable
+Docker Images
+```
+Should show a list of docker images like the figure below:
+![Docker Image](Images/dockerimages.png)
+```bash
+# Remove the Image by force
+Docker image rm <Image ID> -f
+```
+Running the above command will remvoe the Image from the localhost forcefully.
+
+## Docker commands to run
+
+```bash
+#Build the API image -- REMEMBER THE FULL STOP at the end
+docker build -t msc.microsoft.com/dotnet/sdk:6.0 .
+
+# Run the image
+docker run -d -p 80:80 <Image ID>
+
+# Commit the Image
+docker commit <container id> <Reponame:tag>
+
+# Push the Image
+docker push <RepoName:tag>
+```
+
+# Docker Compose
+## What is Docker Compose?
+<img src = "Images/dockercompose.png" width=500>
+
+> - Reduces the reliance on, and simplify the use of Docker Command Line
+>  - Allow us to start up multiple containers quickly
+>  - Allow connection between containers to be established.
+
