@@ -192,6 +192,21 @@ kill processID
 Devops is an acronym for software (dev)lopmnent and IT (Op)erations being combined together. It's a practise that automate the process between the different teams to make the service life-cycle much faster to develop and test.
 
 # Docker
+![Docker](Images/docker-cover.png "Docker")
+
+Docker is an open platform that enables application build and deployment to be hassle-free. It enables users to ***Package*** their code into ***Containers***, for rapid deployment.
+
+## How It Works
+![Docker Process](Images/docker%20process.png "Docker Process")
+
+Docker uses a server-client architecture, where the 'Client' communicates with the 'Host' that does all the heavy lifting, running and distributing docker containers. 
+
+An example of this process running:
+
+- The Client wants to pull the docker image and tells the host.
+- The host goes and retreive the docker Image from the registry 
+- The Client now wants to run the image and tells the host
+- The host goes into the image and retrieve the container, unpackage it and run whatever code it had inside.
 
 ## Download Docker
 ### Prerequistes
@@ -201,29 +216,32 @@ Devops is an acronym for software (dev)lopmnent and IT (Op)erations being combin
 ### Installation Instructions
 > - Install [Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-mac) for MAC / Install [Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-windows) for Windows
 > - Create a [Docker Account](https://hub.docker.com/signup)
+> - Once successfully, completing the above steps, you can use the below commands to test docker out.
 
-
-
+```bash
+#Initial docker run to check if docker works
 docker run hello-world
-
+#check the Images available
 docker images
-
+#List the containers with optional parameter
 docker ps -a
-
-docker rm
-
-docker stop 
-
-docker start
-
+#Remove the container
+docker rm (container id)
+#stop the container
+docker stop (container id)
+#Start the container
+docker start (container id)
+#Run the container with port and container repo
 docker run -d -p 4000:4000 docs/docker.github.io
-
+```
+```bash
+#Run command in a running container
 docker exec -it container sh
-
+#set a alias name to run the above command
 alias docker = "winpty docker"
-
+#Pathway to the index.html
 cd /usr/share/nginx/html/index.html
-
+#Update and install nano in the container to modify the file
 apt update -y
-
 apt install nano -y
+```
