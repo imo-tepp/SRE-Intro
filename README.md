@@ -320,3 +320,103 @@ docker push <RepoName:tag>
 >  - Allow us to start up multiple containers quickly
 >  - Allow connection between containers to be established.
 
+# Kubernetes 
+
+![Kubernates](Images/1_WCsqMt85nMP0DvYv0JnkOA.png)
+
+Kubernetes, known as K8 is an open source platformm for automating deployment and management of containerised applications.
+
+## Kubernete Process
+
+![Diagram](Images/kubernetes-constructs-concepts-architecture.jpg)
+
+In the above diagram, It shows how the kubernete process and manage the different container that are deployed.
+
+Kubernete has 4 main components:
+> - etcd 
+> - Controller Manager
+> - Scheduler
+> - kube apiserver
+
+The way it works is the developer create a script that is used to deploy the containers with kubernetes, it can replicate the same container depending on the number inputted. So in the diagram, there's 2 containers or commonly referred as pods in kubernete. If the pods at any point crashes, the kubernetes will manage the incident for the developer and will terminate the pod and reinsitiate the pod again. And throughout the entire incidenet process, the end users wouldn't notice what happened in the background, their user journey shouldn't be interrupted at all.
+
+## Script to deploy the API container and Service
+
+***Api Deployment Script***
+```yaml
+apiVersion: apps/v1 # which api to use for deployment
+kind: Deployment # what kind of service/object you want to create
+
+# what would you like to call it - name the service/object
+metadata:
+  name: api-deployment # naming the deployment
+
+spec:
+  selector:
+    matchLabels:
+      app: api # look for this label to match with k8 service
+
+  # Let's create a replica set of this with 2 instances/pods
+  replicas: 3
+
+  # template to use it's label for K8 service to launch in the browser
+  template:
+    metadata:
+      labels:
+        app: api # This label connects to the service or any other k8 components
+
+    # Define the container spec
+    spec:
+      containers:
+      - name: api
+        image: imran907/105_sre_imran_api:latest
+        ports:
+        - containerPort: 80
+```
+***API Service Script***
+
+```yaml
+# select the type of API version and type of service/object
+apiVersion: v1
+kind: Service
+
+# Metadata for name
+metadata:
+  name: api-svc
+  namespace: default # sre
+
+# Specification to include ports Selector to conecct to the deployment
+spec:
+  ports:
+  - nodePort: 30442 # range is 30000-32768
+    port: 80
+    protocol: TCP
+    targetPort: 80
+
+# Let's define the selector and label to connect to nginx deployment
+  selector:
+    app: api # the label connects this serivce to deployment
+
+  # Creating LoadBalancer type of deployment
+  type: LoadBalancer
+```
+
+
+# What is YAML
+## How to create a yml file file.yml or file.yaml
+### How to declare it `---`
+---
+#### What are the use cases
+- can be utilised with K8, Docker-compose, Ansible, Cloud-formattion.
+- To codify anything and everything in order to automated processess.
+
+```
+create a deployment for nginx with 3 pods/containers
+
+--
+create a service - cluster-ip, NodePort - LoadBalancer
+```
+- create a folder called nginx-deploy
+- create a file for nginx_deployment.yml
+- create a file for nginx_svc.yml
+- localhost:port
